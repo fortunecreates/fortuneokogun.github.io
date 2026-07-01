@@ -1,0 +1,1 @@
+# fortuneokogun.github.io
