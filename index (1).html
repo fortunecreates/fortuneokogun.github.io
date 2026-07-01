@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fortune Okogun — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f1c2e;
+      --navy-mid: #162436;
+      --navy-light: #1e3048;
+      --gold: #c9a84c;
+      --gold-light: #e2c27a;
+      --gold-pale: #f5e8c4;
+      --white: #f8f5f0;
+      --muted: #8a9ab0;
+      --text: #d4dde8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(15, 28, 46, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.3), transparent);
+    }
+
+    .hero-content { max-width: 720px; }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 300;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-summary {
+      font-size: 0.95rem;
+      color: var(--text);
+      max-width: 560px;
+      margin-bottom: 3rem;
+      line-height: 1.9;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.85rem 2rem;
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      color: var(--gold);
+      padding: 0.85rem 2rem;
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      background: rgba(201, 168, 76, 0.08);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      display: block;
+      flex: 1;
+      height: 1px;
+      background: rgba(201, 168, 76, 0.2);
+      max-width: 60px;
+    }
+
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 3rem;
+      line-height: 1.2;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .stat-item {
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* EXPERIENCE */
+    .experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .experience-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .experience-item:last-child { border-bottom: none; }
+
+    .exp-meta {
+      padding-top: 0.2rem;
+    }
+
+    .exp-date {
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-location {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .exp-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-company {
+      font-size: 0.85rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .exp-desc {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    /* PROJECT */
+    .project-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(201, 168, 76, 0.12);
+      border-radius: 4px;
+      padding: 3rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(201, 168, 76, 0.35);
+      transform: translateY(-4px);
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gold);
+    }
+
+    .project-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+
+    .project-problem {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.85;
+      margin-bottom: 1.8rem;
+    }
+
+    .project-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 2rem;
+    }
+
+    .project-steps li {
+      font-size: 0.88rem;
+      color: var(--text);
+      padding-left: 1.5rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .project-steps li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    .project-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tool-tag {
+      font-size: 0.72rem;
+      background: rgba(201, 168, 76, 0.1);
+      color: var(--gold-light);
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-group {
+      background: var(--navy-mid);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 2rem;
+    }
+
+    .skill-group-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .skill-list li {
+      font-size: 0.88rem;
+      color: var(--text);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .skill-list li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    /* CERTIFICATIONS */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .cert-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(201, 168, 76, 0.12);
+      border-radius: 4px;
+      padding: 1.8rem;
+      transition: border-color 0.3s;
+    }
+
+    .cert-card:hover { border-color: rgba(201, 168, 76, 0.35); }
+
+    .cert-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .cert-issuer {
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+
+    /* CONTACT */
+    .contact-wrapper {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-intro {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 2.5rem;
+      line-height: 1.9;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+      padding-bottom: 0.2rem;
+      transition: border-color 0.3s;
+    }
+
+    .contact-link:hover { border-color: var(--gold); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 0.9rem;
+    }
+
+    /* DIVIDER */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.2), transparent);
+      margin: 0 4rem;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content > * {
+      animation: fadeUp 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-eyebrow { animation-delay: 0.1s; }
+    .hero-name { animation-delay: 0.25s; }
+    .hero-title { animation-delay: 0.4s; }
+    .hero-summary { animation-delay: 0.55s; }
+    .hero-ctas { animation-delay: 0.7s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { padding: 6rem 1.5rem 3rem; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .experience-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .project-card { padding: 2rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+      .section-divider { margin: 0 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Fortune Okogun</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Compliance · Operations · Technology</p>
+      <h1 class="hero-name">Fortune <em>Okogun</em></h1>
+      <p class="hero-title">Compliance Operations Specialist</p>
+      <p class="hero-summary">
+        Over 4 years building compliance systems across fintech, banking, and cloud communications. CAMS and CFCS certified. McKinsey Forward alumna. Now expanding into data analysis and process automation — building at the intersection of regulation and technology.
+      </p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <h2 class="section-heading">Who I Am</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I am a compliance operations specialist with deep experience in AML, KYC, transaction monitoring, and regulatory frameworks across banking and fintech environments. I have worked at Twilio across 60+ countries and at Fidelity Bank in Nigeria.</p>
+        <p>Beyond compliance, I think carefully about process — how systems are designed, how people experience them, and how automation can remove friction without removing care. This thinking led me to recently build a fully automated member onboarding system from scratch, discovering a genuine interest in process design and technology along the way.</p>
+        <p>I am currently expanding into data analysis, learning Python and SQL, and exploring how data-driven insight can strengthen compliance operations and risk management.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-number">4+</div>
+          <div class="stat-label">Years in compliance operations</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">60+</div>
+          <div class="stat-label">Countries covered at Twilio</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Professional certifications — CAMS & CFCS</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">Experience</p>
+    <h2 class="section-heading">Where I Have Worked</h2>
+    <div class="experience-list">
+
+      <div class="experience-item">
+        <div class="exp-meta">
+          <p class="exp-date">Jun 2022 — Present</p>
+          <p class="exp-location">Tallinn, Estonia</p>
+        </div>
+        <div class="exp-body">
+          <p class="exp-role">Compliance Operations Specialist (Level 2)</p>
+          <p class="exp-company">Twilio</p>
+          <p class="exp-desc">Own compliance operations for a global CPaaS provider operating across 60+ countries. Conduct KYC, CDD, and EDD reviews on individual and business customers. Manage customer-facing compliance communications, resolving complex onboarding queries and turning regulatory complexity into clear stakeholder experiences. Identify and drive process improvements across the team.</p>
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="exp-meta">
+          <p class="exp-date">Dec 2020 — Oct 2021</p>
+          <p class="exp-location">Lagos, Nigeria</p>
+        </div>
+        <div class="exp-body">
+          <p class="exp-role">Transaction Monitoring Analyst</p>
+          <p class="exp-company">Fidelity Bank</p>
+          <p class="exp-desc">Monitored and reviewed transactions based on daily alerts and CTRs in line with CBN and FATF AML/CFT guidelines. Conducted EDD on high-risk customers, detected structuring patterns, and filed STRs to NFIU. Maintained accurate risk classifications and liaised with control teams and law enforcement agencies.</p>
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="exp-meta">
+          <p class="exp-date">May 2019 — Dec 2020</p>
+          <p class="exp-location">Lagos, Nigeria</p>
+        </div>
+        <div class="exp-body">
+          <p class="exp-role">Customer Support Agent</p>
+          <p class="exp-company">Fidelity Bank</p>
+          <p class="exp-desc">Handled inbound and outbound customer communications, resolving complaints and escalations. Maintained daily activity reports via Excel tracking tasks, resolutions, and performance metrics.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">Projects</p>
+    <h2 class="section-heading">What I Have Built</h2>
+
+    <div class="project-card">
+      <span class="project-tag">Process Design · Automation · Onboarding</span>
+      <h3 class="project-title">Community Member Onboarding Automation</h3>
+      <p class="project-problem">The problem: a growing global community was onboarding new members through a public WhatsApp link with no system to collect information, no structured process, and admins manually chasing people for basic details.</p>
+      <p class="project-desc">Designed and built a fully automated end-to-end member onboarding system from scratch — replacing a manual, inconsistent process with a structured, professional experience from registration to group access.</p>
+      <ul class="project-steps">
+        <li>Built a structured intake form collecting member details and photo before group access is granted</li>
+        <li>Wrote an Apps Script automation that fires a personalised welcome email instantly on form submission</li>
+        <li>Designed a branded landing page with group values, meeting schedule, platform links, and community website</li>
+        <li>System naturally filters for committed members — only those who complete the form receive group access</li>
+        <li>Zero manual admin required from the organisation after setup</li>
+      </ul>
+      <div class="project-tools">
+        <span class="tool-tag">Google Forms</span>
+        <span class="tool-tag">Google Apps Script</span>
+        <span class="tool-tag">Gmail Automation</span>
+        <span class="tool-tag">Google Sites</span>
+        <span class="tool-tag">JavaScript</span>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">Skills</p>
+    <h2 class="section-heading">What I Bring</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <p class="skill-group-title">Compliance</p>
+        <ul class="skill-list">
+          <li>AML / KYC / CDD / EDD</li>
+          <li>Transaction Monitoring</li>
+          <li>Suspicious Activity Reporting</li>
+          <li>Regulatory Risk Assessment</li>
+          <li>FATF & CBN Frameworks</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Technology</p>
+        <ul class="skill-list">
+          <li>Google Apps Script</li>
+          <li>Microsoft Excel</li>
+          <li>SQL (beginner)</li>
+          <li>Python (in training)</li>
+          <li>Tableau / Looker</li>
+          <li>Zendesk / Persona</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Operations</p>
+        <ul class="skill-list">
+          <li>Process Design & Automation</li>
+          <li>Member / Customer Onboarding</li>
+          <li>Stakeholder Communication</li>
+          <li>Team Training & Development</li>
+          <li>Data Analysis (in training)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <p class="section-label">Certifications</p>
+    <h2 class="section-heading">Credentials</h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <p class="cert-name">Certified Anti-Money Laundering Specialist</p>
+        <p class="cert-issuer">ACAMS</p>
+      </div>
+      <div class="cert-card">
+        <p class="cert-name">Certified Financial Crime Specialist</p>
+        <p class="cert-issuer">ACFCS</p>
+      </div>
+      <div class="cert-card">
+        <p class="cert-name">McKinsey Forward Program</p>
+        <p class="cert-issuer">McKinsey & Company</p>
+      </div>
+      <div class="cert-card">
+        <p class="cert-name">Goldman Sachs Risk Job Simulation</p>
+        <p class="cert-issuer">Forage</p>
+      </div>
+      <div class="cert-card">
+        <p class="cert-name">AML/CFT Certification</p>
+        <p class="cert-issuer">Fidelity Bank / FACTS Limited</p>
+      </div>
+      <div class="cert-card">
+        <p class="cert-name">SQL for Beginners</p>
+        <p class="cert-issuer">Udemy</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <h2 class="section-heading">Get in Touch</h2>
+    <div class="contact-wrapper">
+      <p class="contact-intro">Open to opportunities in Implementation, Onboarding, Compliance Operations, and Data Analysis roles within tech-forward organisations. Based in Espoo, Finland.</p>
+      <div class="contact-links">
+        <a href="mailto:osemfortune@gmail.com" class="contact-link">osemfortune@gmail.com</a>
+        <a href="https://www.linkedin.com/in/okogun-fortune/" target="_blank" class="contact-link">LinkedIn</a>
+        <a href="https://app.notion.com/p/Fortune-Osemhanhu-Okogun-Portfolio-39078719349980a99aa8e47ed46aef26" target="_blank" class="contact-link">Full Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Fortune Osemhanhu Okogun</span>
+    <span class="footer-tagline">Compliance · Operations · Technology</span>
+    <span>Espoo, Finland</span>
+  </footer>
+
+</body>
+</html>
